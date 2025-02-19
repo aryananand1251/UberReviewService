@@ -1,31 +1,29 @@
 package com.example.uberreviewservice.model;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import lombok.*;
 
-import java.util.Date;
 
+
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(schema = "review")
-public class Review {
+public class Review extends BaseModel {
 
-    @Id
-    Long id;
+
 
     @Column(nullable = false )
     String Content;
 
+    @Column(nullable = false )
     Double rating;
 
-    @Column(nullable = false )
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    Date createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    @Column(nullable = false )
-    Date updatedAt;
 
 }
